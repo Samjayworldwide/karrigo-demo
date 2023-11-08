@@ -1,0 +1,42 @@
+spring:
+  datasource:
+#    url: jdbc:postgresql://localhost:5432/karri_go_db
+#    username: postgres
+#    password: password
+    url: jdbc:postgresql://localhost:5432/karri_go_db
+    username: postgres
+    password: postgres
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+        jdbc:
+          time_zone: UTC+1
+
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  config:
+    import: optional:file:.env[.properties]
+
+  mail:
+    password: ${EMAIL_PASSWORD}
+    username: ${EMAIL_USERNAME}
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+
+server:
+  port: 8085
