@@ -1,0 +1,17 @@
+name: Karrigo CI/CD pipeline
+on:
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+jobs:
+  build-and-deploy:
+    runs-on: self hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker Immage
+        run: |
+          docker build . Dockerfile karrigo
+
+      - name: Deploy application & Database
+        run: |
+          docker-compose -f ./docker-compose.yml up -d
